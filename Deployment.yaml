@@ -19,14 +19,20 @@ spec:
             - containerPort: 3000
 
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
-  name: knodeapp-service
+  name: knodeapp-ingress
 spec:
-  type: ClusterIP
-  ports:
-  - port: 3000
-    targetPort: 3000
-  selector:
-    app: knodeapp
+  ingressClassName: nginx
+  rules:
+  - host: app.armandogl97.molcajete.dev
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: knodeapp-service
+            port:
+              number: 3000
