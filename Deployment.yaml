@@ -17,3 +17,16 @@ spec:
           image: armandogl/eneroappnodes:<IMAGE_TAG>
           ports:
             - containerPort: 3000
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: knodeapp-service
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3000
+    targetPort: 3000
+  selector:
+    app: knodeapp
