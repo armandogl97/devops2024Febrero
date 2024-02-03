@@ -19,7 +19,7 @@ node {
     stage('Docker BUild & Push') {
         docker.withRegistry('https://registry.hub.docker.com', '423a4c3a-795a-4ade-be27-bab46bde7c66') {
             def nuestraapp = docker.build("armandogl/eneroappnodes:${gitcommit}", ".")
-            nuestraapp.push
+            nuestraapp.push()
         }        
     }
 }
