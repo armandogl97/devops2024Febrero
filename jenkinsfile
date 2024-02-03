@@ -22,4 +22,11 @@ node {
             nuestraapp.push()
         }        
     }
+
+    stage('Update & Deploy') {
+        sh "send -i 's/<IMAGE_TAG>/${gitcommit}/g' Deployment.yaml"
+        sh "cat Deployment.yaml"        
+    }
+
+
 }
